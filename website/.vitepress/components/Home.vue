@@ -29,11 +29,11 @@ const usage = ['tailwind', 'vue', 'react', 'ts']
           An open-source library based on <br>
           <a
             class="relative inline-block text-foreground font-semibold before:absolute before:top-full before:inset-x-0 before:[translate:0_-0.1em] before:h-[2px] before:bg-primary hover:before:h-[4px]"
-            href="/docs/guides/styling"
+            href="/website/guides/styling"
           >
             shadcn-vue</a> and <a
             class="relative inline-block text-foreground font-semibold before:absolute before:top-full before:inset-x-0 before:[translate:0_-0.1em] before:h-[2px] before:bg-primary hover:before:h-[4px]"
-            href="/docs/guides/styling"
+            href="/website/guides/styling"
           >
             reka-ui</a>.<br>
         </p>
@@ -41,13 +41,13 @@ const usage = ['tailwind', 'vue', 'react', 'ts']
       <div class="mb-12 flex max-w-[calc(100%-2rem)] flex-wrap items-center justify-center gap-4 md:mb-20">
         <a
           class="flex items-center justify-center gap-2 whitespace-nowrap rounded-lg py-2.5 px-5 bg-primary font-semibold text-primary-foreground hover:bg-primary/90"
-          href="/docs/overview/getting-started"
+          href="/website/overview/getting-started"
         >
           Get started
         </a>
         <a
           class="group flex items-center justify-center gap-2 font-semibold text-foreground/70 hover:text-foreground whitespace-nowrap rounded-lg py-2.5 px-5 hover:bg-card border border-muted bg-muted/50"
-          href="/docs/components/checkbox"
+          href="/website/components/checkbox"
         >
           Explore Playground
           <Icon icon="lucide:arrow-right" />

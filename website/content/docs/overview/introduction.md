@@ -22,7 +22,7 @@ Caster UI provides beautiful, responsive weather widgets that you can easily int
 
 ## Getting Started
 
-Ready to get started? Check out our [Installation Guide](/docs/overview/installation) to begin using Caster UI in your project.
+Ready to get started? Check out our [Installation Guide](/website/overview/installation) to begin using Caster UI in your project.
 
 ## Components
 

@@ -13,8 +13,8 @@ Tailwind CSS weather widget library.
 <p>
 
 <p align="center">
-<a href="https://www.npmjs.com/package/caster-ui" target="__blank"><img src="https://img.shields.io/npm/v/caster-ui?style=flat&colorA=002438&colorB=41c399" alt="NPM version"></a>
-<a href="https://www.npmjs.com/package/caster-ui" target="__blank"><img alt="NPM Downloads" src="https://img.shields.io/npm/dm/caster-ui?flat&colorA=002438&colorB=41c399"></a>
+<a href="https://www.npmjs.com/package/personal-project" target="__blank"><img src="https://img.shields.io/npm/v/personal-project?style=flat&colorA=002438&colorB=41c399" alt="NPM version"></a>
+<a href="https://www.npmjs.com/package/personal-project" target="__blank"><img alt="NPM Downloads" src="https://img.shields.io/npm/dm/personal-project?flat&colorA=002438&colorB=41c399"></a>
 <a href="https://github.com/sbozhook/caster" target="__blank"><img alt="GitHub stars" src="https://img.shields.io/github/stars/sbozhook/caster?flat&colorA=002438&colorB=41c399"></a>
 </p>
 
@@ -30,13 +30,13 @@ Tailwind CSS weather widget library.
 ## Installation
 
 ```bash
-pnpm add caster-ui
+pnpm add personal-project
 ```
 ```bash
-npm install caster-ui
+npm install personal-project
 ```
 ```bash
-yarn add caster-ui
+yarn add personal-project
 ```
 
 ## Documentation
@@ -57,7 +57,7 @@ We would love to have your contributions! All PRs are welcome!
 
 1. Clone the repo
 2. Run `pnpm i`
-3. Run `pnpm build` to run build `caster-ui` locally
+3. Run `pnpm build` to run build `personal-project` locally
 3. Run `pnpm docs:dev` to run vitepress
 4. Open `http://localhost:5173`
 

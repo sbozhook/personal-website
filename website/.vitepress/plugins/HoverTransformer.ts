@@ -3,7 +3,7 @@ import type { ShikiTransformer } from 'shiki'
 import { readFileSync } from 'node:fs'
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
-import { components as componentsObj } from 'caster-ui/constant'
+import { components as componentsObj } from 'personal-project/constant'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 

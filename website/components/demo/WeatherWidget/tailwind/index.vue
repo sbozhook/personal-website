@@ -1,5 +1,5 @@
 <script setup>
-import { WeatherWidget } from 'caster-ui'
+import { WeatherWidget } from 'personal-project'
 </script>
 
 <template>

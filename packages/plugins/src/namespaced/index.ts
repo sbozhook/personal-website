@@ -1,4 +1,4 @@
-import { WeatherWidget } from 'caster-ui'
+import { WeatherWidget } from 'personal-project'
 
 export const Weather = {
   Widget: WeatherWidget,

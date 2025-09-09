@@ -1,29 +1,29 @@
 {
-  "name": "caster",
+  "name": "personal-website",
   "type": "module",
   "version": "0.0.1",
   "private": true,
   "packageManager": "pnpm@10.13.1",
   "license": "MIT",
-  "repository": "sbozhook/caster",
+  "repository": "sbozhook/personal-website",
   "workspaces": [
     "packages/*"
   ],
   "scripts": {
     "story:dev": "pnpm --filter histoire story:dev --open",
-    "build": "pnpm run --filter caster-ui build && pnpm run --filter plugins build",
+    "build": "pnpm run --filter personal-project build && pnpm run --filter plugins build",
     "build-only": "pnpm run -r build-only",
-    "docs:install": "pnpm --filter docs install",
-    "docs:dev": "pnpm --filter docs docs:dev",
-    "docs:build": "pnpm --filter docs docs:build",
-    "docs:gen": "pnpm --filter docs docs:gen",
-    "docs:contributors": "pnpm --filter docs docs:contributors",
+    "web:install": "pnpm --filter website install",
+    "web:dev": "pnpm --filter website web:dev",
+    "web:build": "pnpm --filter website web:build",
+    "web:gen": "pnpm --filter website web:gen",
+    "web:contributors": "pnpm --filter website web:contributors",
     "prepare": "pnpm simple-git-hooks",
-    "test": "pnpm --filter caster-ui test",
-    "test-update": "pnpm --filter caster-ui test-update",
+    "test": "pnpm --filter personal-project test",
+    "test-update": "pnpm --filter personal-project test-update",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
-    "bumpp": "bumpp package.json packages/*/package.json docs/package.json",
+    "bumpp": "bumpp package.json packages/*/package.json website/package.json",
     "pub:release": "cd packages/core && pnpm pub:release"
   },
   "devDependencies": {
@@ -43,9 +43,6 @@
     ]
   },
   "pnpm": {
-    "patchedDependencies": {
-      "vitepress": "patches/vitepress.patch"
-    },
     "onlyBuiltDependencies": [
       "esbuild",
       "simple-git-hooks",

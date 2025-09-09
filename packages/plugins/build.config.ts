@@ -34,7 +34,7 @@ export default defineBuildConfig([
     clean: false,
     declaration: 'node16',
     externals: [
-      'caster-ui',
+      'personal-project',
     ],
     rollup: {
       emitCJS: true,

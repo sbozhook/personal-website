@@ -1,6 +1,6 @@
-import type { Components } from 'caster-ui/constant'
+import type { Components } from 'personal-project/constant'
 import type { ComponentResolver } from 'unplugin-vue-components'
-import { components } from 'caster-ui/constant'
+import { components } from 'personal-project/constant'
 
 export interface ResolverOptions {
   /**
@@ -25,7 +25,7 @@ export default function (options: ResolverOptions = {}): ComponentResolver {
           if (groupComponents.includes(componentName)) {
             return {
               name: componentName,
-              from: 'caster-ui',
+              from: 'personal-project',
             }
           }
         }

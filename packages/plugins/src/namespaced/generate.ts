@@ -1,5 +1,5 @@
 import { writeFileSync } from 'node:fs'
-import { components } from 'caster-ui/constant'
+import { components } from 'personal-project/constant'
 
 const excludedComponent = ['configProvider', 'primitive', 'visuallyHidden']
 const filteredComponent = Object.keys(components).filter(i => !excludedComponent.includes(i))
@@ -29,7 +29,7 @@ const namespaced = filteredComponent.map((curr: keyof typeof components) => {
 })
 
 const template = `
-import { ${flattenComponents.join(', ')} } from 'caster-ui'
+import { ${flattenComponents.join(', ')} } from 'personal-project'
 
 ${namespaced.map(component => component).join('\n\n')}
 `

@@ -1,8 +1,8 @@
 import type { } from '@nuxt/schema' // workaround for TS bug with "phantom" deps
 
-import type { Components } from 'caster-ui/constant'
+import type { Components } from 'personal-project/constant'
 import { addComponent, defineNuxtModule } from '@nuxt/kit'
-import { components as allComponents } from 'caster-ui/constant'
+import { components as allComponents } from 'personal-project/constant'
 
 export interface ModuleOptions {
   components: Partial<Record<keyof Components, boolean>> | boolean
@@ -11,7 +11,7 @@ export interface ModuleOptions {
 
 export default defineNuxtModule<ModuleOptions>({
   meta: {
-    name: '@caster-ui/nuxt',
+    name: '@personal-project/nuxt',
     configKey: 'caster',
     compatibility: {
       nuxt: '>=3.0.0',
@@ -33,7 +33,7 @@ export default defineNuxtModule<ModuleOptions>({
           addComponent({
             name: `${prefix}${component}`,
             export: component,
-            filePath: 'caster-ui',
+            filePath: 'personal-project',
           })
         }
       }
