@@ -1,0 +1,27 @@
+{
+  "name": "plugins",
+  "type": "module",
+  "version": "2.5.0",
+  "description": "Nuxt module for Radix Vue",
+  "license": "MIT",
+  "keywords": [
+    "radix",
+    "caster-ui",
+    "nuxt-module",
+    "nuxt",
+    "nuxt3"
+  ],
+  "sideEffects": false,
+  "scripts": {
+    "build": "unbuild",
+    "generate": "tsx ./src/namespaced/generate",
+    "stub": "unbuild --stub"
+  },
+  "dependencies": {
+    "@nuxt/kit": "^3.15.4",
+    "@nuxt/schema": "^3.15.4",
+    "caster-ui": "link:../core",
+    "unbuild": "^2.0.0",
+    "unplugin-vue-components": "^29.0.0"
+  }
+}
