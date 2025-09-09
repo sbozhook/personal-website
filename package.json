@@ -43,6 +43,9 @@
     ]
   },
   "pnpm": {
+    "patchedDependencies": {
+      "vitepress": "patches/vitepress.patch"
+    },
     "onlyBuiltDependencies": [
       "esbuild",
       "simple-git-hooks",

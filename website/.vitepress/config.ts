@@ -2,17 +2,15 @@ import autoprefixer from 'autoprefixer'
 import anchor from 'markdown-it-anchor'
 import tailwind from 'tailwindcss'
 import { defineConfig, postcssIsolateStyles } from 'vitepress'
-import { version } from '../../package.json'
 import { teamMembers } from './contributors'
 import {
   font,
   github,
   ogImage,
   ogUrl,
+  projectDescription,
   projectName,
   projectShortName,
-  rekaDescription,
-  releases,
 } from './meta'
 import ComponentPreviewPlugin from './plugins/ComponentPreview'
 import { createHoverTransformer } from './plugins/HoverTransformer'
@@ -29,7 +27,7 @@ ${text}
 export default defineConfig({
   cleanUrls: true,
   title: projectName,
-  description: rekaDescription,
+  description: projectDescription,
   titleTemplate: projectShortName,
   head: [
     ['meta', { name: 'theme-color', content: '#00C38A' }],
@@ -39,11 +37,11 @@ export default defineConfig({
     ['meta', { name: 'author', content: `${teamMembers.map(c => c.name).join(', ')} and ${projectName} contributors` }],
     ['meta', { name: 'keywords', content: 'weather, widget, tailwind, css, ui, components, typescript' }],
     ['meta', { property: 'og:title', content: projectName }],
-    ['meta', { property: 'og:description', content: rekaDescription }],
+    ['meta', { property: 'og:description', content: projectDescription }],
     ['meta', { property: 'og:url', content: ogUrl }],
     ['meta', { property: 'og:image', content: ogImage }],
     ['meta', { name: 'twitter:title', content: projectName }],
-    ['meta', { name: 'twitter:description', content: rekaDescription }],
+    ['meta', { name: 'twitter:description', content: projectDescription }],
     ['meta', { name: 'twitter:image', content: ogImage }],
     ['meta', { name: 'twitter:card', content: 'summary_large_image' }],
     [
@@ -75,19 +73,12 @@ export default defineConfig({
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
     nav: [
-      { text: 'Docs', link: '/docs/overview/introduction' },
-      { text: 'Playground', link: '/playground' },
-      {
-        text: `v${version}`,
-        items: [
-          { text: 'Release Notes ', link: releases },
-        ],
-      },
+      { text: '📄 CV', link: '/docs/overview/introduction' },
     ],
     outline: {
       level: [2, 3],
     },
-    logo: '/logo.svg',
+    logo: '/logo.png',
 
     sidebar: [
       {

@@ -43,23 +43,6 @@ watch(path, () => {
       orientation="vertical"
     />
     <ThemeToggle />
-
-    <Separator
-      class="bg-muted h-4 w-px mx-4"
-      decorative
-      orientation="vertical"
-    />
-
-    <a
-      v-for="link in theme.socialLinks"
-      :key="link.link"
-      :href="link.link"
-      :aria-label="link.icon"
-      target="_blank"
-      class="w-9 h-9 bg-transparent text-muted-foreground hover:text-foreground hover:bg-muted flex items-center justify-center rounded-lg text-xl flex-shrink-0"
-    >
-      <Icon :icon="`simple-icons:${link.icon}`" />
-    </a>
   </nav>
 
   <div class="lg:hidden">

@@ -1,10 +1,10 @@
 // noinspection ES6PreferShortImport: IntelliJ IDE hint to avoid warning to use `~/contributors`, will fail on build if changed
 
 /* Texts */
-export const projectName = 'Caster UI'
-export const projectShortName = 'Caster UI'
-export const rekaDescription
-  = 'Tailwind CSS weather widget library.'
+export const projectName = 'Sem Bozhyk'
+export const projectShortName = 'Sem Bozhyk'
+export const projectDescription
+  = 'Software developer'
 
 /* CDN fonts and styles */
 export const googleapis = 'https://fonts.googleapis.com'

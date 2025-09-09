@@ -4,8 +4,7 @@ import { TooltipProvider } from 'reka-ui'
 import { useData, useRoute } from 'vitepress'
 import { toRefs } from 'vue'
 import Home from '../components/Home.vue'
-import Navbar from '../components/Navbar.vue'
-import SearchTrigger from '../components/SearchTrigger.vue'
+import ThemeToggle from '../components/ThemeToggle.vue'
 import Docs from './Docs.vue'
 
 const { site, theme, frontmatter } = useData()
@@ -16,28 +15,42 @@ const { top } = toRefs(arrivedState)
 
 <template>
   <TooltipProvider>
-    <div class="flex flex-col items-center min-h-screen h-full">
+    <div class="flex flex-col items-center min-h-screen h-full justify-center">
       <header
         class="w-full py-4 sticky top-0 z-20 transition-all duration-500 h-[68px] md:h-full"
         :class="[top ? 'bg-transparent backdrop-blur-0' : 'bg-background/90 backdrop-blur supports-[backdrop-filter]:bg-background/90']"
       >
-        <div class="max-w-[1440px] flex items-center justify-between mx-auto px-6">
+        <div class="max-w-[768px] h-[96px] flex align-top items-center justify-between mx-auto px-6">
           <div class="w-full justify-between md:justify-normal flex items-center gap-8">
             <a
               href="/"
-              class="flex items-center gap-2"
+              class="flex items-center gap-4"
             >
-              <img
-                class="w-6 md:w-9"
-                alt="CoinCaster Logo"
-                :src="theme.logo"
-              >
-              <span class="font-bold text-xl md:text-2xl">{{ site.title }}</span>
+              <div class="rounded overflow-hidden">
+                <img
+                  class="w-24 md:w-15 rounded-full"
+                  alt="CoinCaster Logo"
+                  :src="theme.logo"
+                >
+              </div>
+              <div class="flex flex-col gap-1">
+                <span class="font-bold text-xl md:text-2xl">{{ site.title }}</span>
+                <div class="flex text-sm md:text-md text-muted-foreground gap-1">
+                  <img
+                    class="w-3 md:w-15 rounded-full"
+                    alt="CoinCaster Logo"
+                    src="/ts.svg"
+                  >
+                  <span>Software developer based in 🇨🇿 Prague from 🇺🇦 Odessa</span>
+                </div>
+                <span class="flex text-sm md:text-md text-muted-foreground">🎯 T-shaped skills with 10+ years of experience</span>
+              </div>
             </a>
-            <SearchTrigger />
           </div>
 
-          <Navbar />
+          <div class="align-top h-full py-4">
+            <ThemeToggle />
+          </div>
         </div>
       </header>
 
