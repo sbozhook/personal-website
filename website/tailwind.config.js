@@ -1,3 +1,4 @@
+import animations from '@midudev/tailwind-animations'
 import { blackA, cyan, grass, green, indigo, mauve, purple, red, slate, teal, violet } from '@radix-ui/colors'
 import { fontFamily } from 'tailwindcss/defaultTheme'
 
@@ -208,5 +209,6 @@ module.exports = {
   },
   plugins: [
     require('@tailwindcss/typography'),
+    animations,
   ],
 }

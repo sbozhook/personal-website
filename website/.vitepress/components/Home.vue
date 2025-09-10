@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { buildMessage, useTypingAnimation, wait } from '@sbozhook/core'
+import { useTypingAnimation, wait } from '@sbozhook/core'
 import { onMounted, ref } from 'vue'
+import TypingTitle from './animations/TypingTitle.vue'
 
-const isMargin = ref(true)
-const message = buildMessage('Hi there!', { role: 'assistant' })
+// const message = buildMessage('Hi there!', { role: 'assistant' })
 
 const title = useTypingAnimation('Personal website')
 const whiteTitle = useTypingAnimation()
@@ -30,27 +30,7 @@ onMounted(() => {
   <section class="flex-1">
     <div class="grid justify-items-center gap-8 p-5 px-3 sm:px-4 md:gap-10 md:px-8">
       <div class="mt-2 grid w-full max-w-4xl justify-items-center gap-[inherit] sm:mt-10 md:mt-20">
-        <div class="flex relative flex-col items-center gap-4">
-          <span
-            v-if="onlyMounted"
-            class="text-pretty absolute text-4xl font-bold sm:text-6xl sm:font-extrabold md:text-7xl text-foreground min-w-[620px]"
-          >
-            <template v-if="showFullTitle">
-              {{ whiteTitle.typingContent }}
-            </template>
-          </span>
-          <span
-            v-if="onlyMounted"
-            class="text-pretty absolute text-right text-4xl font-bold sm:text-6xl sm:font-extrabold md:text-7xl text-foreground min-w-[620px] opacity-50"
-          >
-            {{ whiteTitleRight.typingContent }}
-          </span>
-          <h1
-            class="text-pretty text-right text-4xl font-bold sm:text-6xl sm:font-extrabold md:text-7xl text-foreground min-w-[620px] opacity-5"
-          >
-            {{ title.typingContent }}
-          </h1>
-        </div>
+        <TypingTitle text="Personal website" />
 
         <!--        <div> -->
         <!--          <TypingMessage :message="message"/> -->

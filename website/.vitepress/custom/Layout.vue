@@ -21,34 +21,34 @@ const { top } = toRefs(arrivedState)
         :class="[top ? 'bg-transparent backdrop-blur-0' : 'bg-background/90 backdrop-blur supports-[backdrop-filter]:bg-background/90']"
       >
         <div class="max-w-[768px] h-[96px] flex align-top items-center justify-between mx-auto px-6">
-          <div class="w-full justify-between md:justify-normal flex items-center gap-8">
+          <div class="w-full justify-between md:justify-normal flex items-center gap-4 animate-fade-in-right">
             <a
               href="/"
-              class="flex items-center gap-4"
+              class="flex items-center"
             >
               <div class="rounded overflow-hidden">
                 <img
                   class="w-24 md:w-15 rounded-full"
-                  alt="CoinCaster Logo"
+                  alt="Logo"
                   :src="isDark ? theme.logo : '/logo-light.png'"
                 >
               </div>
-              <div class="flex flex-col gap-1">
-                <span class="font-bold text-xl md:text-2xl">{{ site.title }}</span>
-                <div class="flex text-sm md:text-md text-muted-foreground gap-1">
-                  <img
-                    class="w-3 md:w-15 rounded-full"
-                    alt="CoinCaster Logo"
-                    src="/ts.svg"
-                  >
-                  <span>Software developer based in 🇨🇿 Prague from 🇺🇦 Odessa</span>
-                </div>
-                <span class="flex text-sm md:text-md text-muted-foreground">🎯 T-shaped skills with 10+ years of experience</span>
-              </div>
             </a>
+            <div class="flex flex-col gap-1">
+              <span class="font-bold text-xl md:text-2xl">{{ site.title }}</span>
+              <div class="flex text-sm md:text-md text-muted-foreground gap-1">
+                <img
+                  class="w-3 md:w-15 rounded-full"
+                  alt="Logo"
+                  src="/ts.svg"
+                >
+                <span>Software developer based in 🇨🇿 Prague from 🇺🇦 Odessa</span>
+              </div>
+              <span class="flex text-sm md:text-md text-muted-foreground">🎯 T-shaped skills with 10+ years of experience</span>
+            </div>
           </div>
 
-          <div class="align-top h-full py-4">
+          <div class="align-top h-full py-4 animate-fade-in-left">
             <ThemeToggle />
           </div>
         </div>
