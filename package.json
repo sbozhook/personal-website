@@ -1,5 +1,5 @@
 {
-  "name": "personal-website",
+  "name": "@sbozhook/personal-website",
   "type": "module",
   "version": "0.0.1",
   "private": true,
@@ -11,13 +11,20 @@
   ],
   "scripts": {
     "story:dev": "pnpm --filter histoire story:dev --open",
-    "build": "pnpm run --filter personal-project build && pnpm run --filter plugins build",
+    "build": "pnpm run --filter @sbozhook/core build && pnpm run --filter plugins build",
     "build-only": "pnpm run -r build-only",
     "web:install": "pnpm --filter website install",
     "web:dev": "pnpm --filter website web:dev",
     "web:build": "pnpm --filter website web:build",
     "web:gen": "pnpm --filter website web:gen",
     "web:contributors": "pnpm --filter website web:contributors",
+    "types:dev": "pnpm --filter @sbozhook/types types:dev",
+    "types:build": "pnpm --filter @sbozhook/ypes types:build",
+    "ui:dev": "pnpm --filter @sbozhook/ui ui:dev",
+    "ui:build": "pnpm --filter @sbozhook/ui ui:build",
+    "ui:preview": "pnpm --filter @sbozhook/ui ui:preview",
+    "ui:test:unit": "pnpm --filter @sbozhook/ui ui:test:unit",
+    "ui:test:e2e": "pnpm --filter @sbozhook/ui ui:test:e2e",
     "prepare": "pnpm simple-git-hooks",
     "test": "pnpm --filter personal-project test",
     "test-update": "pnpm --filter personal-project test-update",
@@ -25,6 +32,13 @@
     "lint:fix": "eslint . --fix",
     "bumpp": "bumpp package.json packages/*/package.json website/package.json",
     "pub:release": "cd packages/core && pnpm pub:release"
+  },
+  "dependencies": {
+    "@sbozhook/core": "workspace:*",
+    "@sbozhook/types": "workspace:*",
+    "@sbozhook/ui": "workspace:*",
+    "lucide-vue-next": "^0.525.0",
+    "reka-ui": "^2.3.2"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^4.13.1",
@@ -43,9 +57,6 @@
     ]
   },
   "pnpm": {
-    "patchedDependencies": {
-      "vitepress": "patches/vitepress.patch"
-    },
     "onlyBuiltDependencies": [
       "esbuild",
       "simple-git-hooks",

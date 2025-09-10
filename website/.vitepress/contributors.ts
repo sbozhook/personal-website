@@ -1,5 +1,5 @@
 import type { DefaultTheme } from 'vitepress'
-import contributorNames from './contributor-names.json'
+// import contributorNames from './contributor-names.json'
 
 export interface Contributor {
   name: string
@@ -21,11 +21,11 @@ function getAvatarUrl(name: string) {
   return `https://github.com/${name}.png`
 }
 
-export const contributors = (contributorNames as string[]).reduce((acc, name) => {
-  contributorsAvatars[name] = getAvatarUrl(name)
-  acc.push({ name, avatar: contributorsAvatars[name] })
-  return acc
-}, [] as Contributor[])
+// export const contributors = (contributorNames as string[]).reduce((acc, name) => {
+//   contributorsAvatars[name] = getAvatarUrl(name)
+//   acc.push({ name, avatar: contributorsAvatars[name] })
+//   return acc
+// }, [] as Contributor[])
 function createLinks(tm: CoreTeam): CoreTeam {
   tm.links = [{ icon: 'github', link: `https://github.com/${tm.github}` }]
   if (tm.mastodon)

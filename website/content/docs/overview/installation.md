@@ -11,6 +11,6 @@ Get started with Caster UI by installing it in your Vue.js project.
 
 Install Caster UI using your preferred package manager:
 
-<InstallationTabs name="personal-project" />
+<InstallationTabs name="@sbozhook/core" />
 
 Now that you have Caster UI installed, check out the [Weather Widget](/components/weather-widget) component to get started!

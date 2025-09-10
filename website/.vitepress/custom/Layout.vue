@@ -7,7 +7,7 @@ import Home from '../components/Home.vue'
 import ThemeToggle from '../components/ThemeToggle.vue'
 import Docs from './Docs.vue'
 
-const { site, theme, frontmatter } = useData()
+const { site, theme, frontmatter, isDark } = useData()
 const { path } = toRefs(useRoute())
 const { arrivedState } = useScroll(globalThis.window)
 const { top } = toRefs(arrivedState)
@@ -30,7 +30,7 @@ const { top } = toRefs(arrivedState)
                 <img
                   class="w-24 md:w-15 rounded-full"
                   alt="CoinCaster Logo"
-                  :src="theme.logo"
+                  :src="isDark ? theme.logo : '/logo-light.png'"
                 >
               </div>
               <div class="flex flex-col gap-1">

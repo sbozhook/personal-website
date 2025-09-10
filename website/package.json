@@ -14,10 +14,10 @@
   },
   "dependencies": {
     "@internationalized/date": "^3.7.0",
+    "@sbozhook/core": "link:../packages/core",
     "@stackblitz/sdk": "^1.11.0",
     "@vueuse/core": "^12.5.0",
     "motion-v": "1.3.1",
-    "personal-project": "link:../packages/core",
     "reka-ui": "^2.5.0",
     "vue": "3.5.17",
     "vue-sonner": "^1.3.2"

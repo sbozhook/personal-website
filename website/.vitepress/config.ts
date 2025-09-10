@@ -1,3 +1,4 @@
+import { fileURLToPath, URL } from 'node:url'
 import autoprefixer from 'autoprefixer'
 import anchor from 'markdown-it-anchor'
 import tailwind from 'tailwindcss'
@@ -165,6 +166,11 @@ export default defineConfig({
           autoprefixer(),
           postcssIsolateStyles({ includeFiles: [/vp-doc\.css/] }),
         ],
+      },
+    },
+    resolve: {
+      alias: {
+        '@sbozhook/ui/lib': fileURLToPath(new URL('../../packages/ui/src/lib', import.meta.url)),
       },
     },
   },

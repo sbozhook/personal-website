@@ -1,5 +1,5 @@
 <script setup>
-import { WeatherWidget } from 'personal-project'
+import { WeatherWidget } from '@sbozhook/core'
 </script>
 
 <template>
