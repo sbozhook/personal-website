@@ -4,189 +4,212 @@ export function useTypingAnimation(initialContent = '') {
   const isTyping = ref(false)
   const preserve = ref(true)
   const typingContent = ref(initialContent)
-  const direction = ref('lr')
+  const direction = ref<'lr' | 'rl'>('lr')
   const lastText = ref('')
   const lettersArray = ref<Array<{ letter: string, visible: boolean }>>([...typingContent.value].map(letter => ({
     letter,
     visible: true,
   })))
-  let currentResolve = () => null
-  let timeOut = 0
-  let lrIndex = 0
-  let rlIndex = 0
+
+  let currentResolve: () => void = () => {}
+  let rafId = 0
+  let currentIndex = 0
+  let frameCount = 0
+  let targetFrames = 0
 
   const stop = () => {
     if (!isTyping.value) {
       return
     }
-    clearTimeout(timeOut)
     isTyping.value = false
-    currentResolve()
-    currentResolve = () => null
-  }
-
-  function shuffle(array: Array<unknown>) {
-    const arr = [...array]
-    for (let i = arr.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [arr[i], arr[j]] = [arr[j], arr[i]] // swap
+    if (rafId) {
+      cancelAnimationFrame(rafId)
+      rafId = 0
     }
-    return arr
+    currentResolve()
+    currentResolve = () => {}
+    frameCount = 0
+    targetFrames = 0
   }
 
   const typeMessage = async (text: string, delay: number = 15): Promise<void> => {
     return new Promise((resolve) => {
-      currentResolve = resolve as typeof currentResolve
+      currentResolve = resolve
       isTyping.value = true
+
       if (lastText.value !== text) {
         typingContent.value = preserve.value ? ' '.repeat(text.length) : ''
-        lrIndex = 0
-        rlIndex = text.length - 1
+        currentIndex = direction.value === 'lr' ? 0 : text.length - 1
       }
-      lastText.value = ''
-      let currentIndex = direction.value === 'lr' ? lrIndex : rlIndex
+      lastText.value = text
+
+      frameCount = 0
+      targetFrames = Math.max(1, Math.round(delay / 16.67))
+
       const typeChar = () => {
-        const isLr = direction.value === 'lr'
-        if (isLr && currentIndex <= text.length) {
+        frameCount++
+
+        if (frameCount >= targetFrames) {
+          const isLr = direction.value === 'lr'
           const letters = [...typingContent.value]
           letters[currentIndex] = text[currentIndex]
           typingContent.value = letters.join('')
-          isLr ? lrIndex++ : rlIndex--
-          currentIndex = isLr ? lrIndex : rlIndex
 
-          if (currentIndex <= text.length) {
-            timeOut = setTimeout(typeChar, delay) as unknown as number
+          if (isLr) {
+            currentIndex++
+            if (currentIndex >= text.length) {
+              stop()
+              return
+            }
           }
           else {
-            // Finished typing
-            stop()
+            currentIndex--
+            if (currentIndex < 0) {
+              stop()
+              return
+            }
           }
+
+          frameCount = 0
         }
-        else {
-          const letters = [...typingContent.value]
-          letters[currentIndex] = text[currentIndex]
-          typingContent.value = letters.join('')
 
-          isLr ? lrIndex++ : rlIndex--
-          currentIndex = isLr ? lrIndex : rlIndex
-
-          if (currentIndex <= text.length) {
-            timeOut = setTimeout(typeChar, delay) as unknown as number
-          }
-          else {
-            // Finished typing
-            stop()
-          }
+        if (isTyping.value) {
+          rafId = requestAnimationFrame(typeChar)
         }
       }
 
-      typeChar()
+      rafId = requestAnimationFrame(typeChar)
     })
   }
 
   const eraseMessage = async (text: string, delay: number = 15): Promise<void> => {
     return new Promise((resolve) => {
-      currentResolve = resolve as typeof currentResolve
+      currentResolve = resolve
       isTyping.value = true
+
       if (lastText.value !== text) {
         typingContent.value = text
-        lrIndex = 0
-        rlIndex = text.length - 1
       }
       lastText.value = text
-      let currentIndex = direction.value === 'lr' ? lrIndex : rlIndex
-      const typeChar = () => {
-        const isLr = direction.value === 'lr'
-        if (isLr && currentIndex <= text.length) {
-          const letters = [...typingContent.value]
-          letters.pop()
-          typingContent.value = letters.join('')
-          isLr ? lrIndex++ : rlIndex--
-          currentIndex = isLr ? lrIndex : rlIndex
 
-          if (currentIndex <= text.length) {
-            timeOut = setTimeout(typeChar, delay) as unknown as number
+      frameCount = 0
+      targetFrames = Math.max(1, Math.round(delay / 16.67))
+
+      const eraseChar = () => {
+        frameCount++
+
+        if (frameCount >= targetFrames) {
+          const letters = [...typingContent.value]
+
+          if (direction.value === 'lr') {
+            letters.pop()
           }
           else {
-            // Finished typing
-            stop()
+            letters.shift()
           }
+
+          typingContent.value = letters.join('')
+
+          if (letters.length === 0) {
+            stop()
+            return
+          }
+
+          frameCount = 0
         }
-        else {
-          const letters = [...typingContent.value]
-          letters.shift()
-          typingContent.value = letters.join('')
 
-          isLr ? lrIndex++ : rlIndex--
-          currentIndex = isLr ? lrIndex : rlIndex
-
-          if (currentIndex <= text.length) {
-            timeOut = setTimeout(typeChar, delay) as unknown as number
-          }
-          else {
-            // Finished typing
-            stop()
-          }
+        if (isTyping.value) {
+          rafId = requestAnimationFrame(eraseChar)
         }
       }
 
-      typeChar()
+      rafId = requestAnimationFrame(eraseChar)
     })
   }
 
   const dismissMessage = async (delay: number = 15): Promise<void> => {
     return new Promise((resolve) => {
+      currentResolve = resolve
+      isTyping.value = true
+
       const map = new Map()
-      const indexSet = new Set([...typingContent.value].map((t, i) => i))
+      const indexSet = new Set([...typingContent.value].map((_, i) => i))
       const array = [...indexSet.values()]
+
       array.forEach((index, i) => {
         const left = [...indexSet.values()]
         const random = Math.round(Math.random())
         const random2 = Math.round(Math.random())
         const random3 = Math.round(Math.random())
-        const toDelete = i % 2 ? 0 + random + random2 : left.length - 1 - random - random2
+        const toDelete = i % 2 ? random + random2 : left.length - 1 - random - random2
         const res = left[toDelete] ?? left[random3 ? 0 : left.length - 1]
         map.set(index, res)
         indexSet.delete(res)
       })
-      currentResolve = resolve as typeof currentResolve
-      isTyping.value = true
-      let currentIndex = 0
-      const typeChar = () => {
-        const index = map.get(currentIndex)
 
-        lettersArray.value[index].visible = false
-        map.delete(currentIndex)
-        currentIndex++
+      lettersArray.value = [...typingContent.value].map(letter => ({
+        letter,
+        visible: true,
+      }))
 
-        if (map.size) {
-          timeOut = setTimeout(typeChar, delay) as unknown as number
+      let dismissIndex = 0
+      frameCount = 0
+      targetFrames = Math.max(1, Math.round(delay / 16.67))
+
+      const dismissChar = () => {
+        frameCount++
+
+        if (frameCount >= targetFrames) {
+          const index = map.get(dismissIndex)
+          if (index !== undefined) {
+            lettersArray.value[index].visible = false
+          }
+          map.delete(dismissIndex)
+          dismissIndex++
+
+          if (map.size === 0) {
+            stop()
+            return
+          }
+
+          frameCount = 0
         }
-        else {
-          // Finished typing
-          stop()
+
+        if (isTyping.value) {
+          rafId = requestAnimationFrame(dismissChar)
         }
       }
 
-      typeChar()
+      rafId = requestAnimationFrame(dismissChar)
     })
   }
 
   const stopTyping = () => {
+    if (rafId) {
+      cancelAnimationFrame(rafId)
+      rafId = 0
+    }
     isTyping.value = false
     typingContent.value = ''
+    frameCount = 0
+    targetFrames = 0
   }
 
   const setDirection = (dir: 'lr' | 'rl') => {
     direction.value = dir
   }
 
-  const reset = (lrIndex = 0) => {
-    currentResolve = () => null
-    timeOut = 0
+  const reset = () => {
+    currentResolve = () => {}
+    if (rafId) {
+      cancelAnimationFrame(rafId)
+      rafId = 0
+    }
     lastText.value = ''
-    lrIndex = 0
-    rlIndex = 0
+    currentIndex = 0
+    frameCount = 0
+    targetFrames = 0
+    isTyping.value = false
   }
 
   return {
