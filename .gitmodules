@@ -1,0 +1,3 @@
+[submodule "packages/ai"]
+	path = packages/ai
+	url = githubboz:sbozhook/ai.git

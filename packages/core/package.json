@@ -1,7 +1,7 @@
 {
   "name": "@sbozhook/core",
   "type": "module",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Personal website core components",
   "author": "Sem Bozhyl",
   "license": "MIT",
