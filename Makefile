@@ -3,9 +3,6 @@ SHELL := /bin/bash
 
 # AI-assisted commit - CALL THIS WITH AI-GENERATED MESSAGE
 # Usage: make commit MSG="title" BODY="optional description"
-commit:
-	@./scripts/commit-helper.sh "$(MSG)" "$(BODY)"
-
 release:
 	@npm run release
 	@git push --follow-tags origin main
